@@ -31,6 +31,7 @@ function timerStart() {
     const diferense = selectedDate - currentDate;
     if (selectedDate < currentDate) {
       Notiflix.Notify.failure('You  must choose future date!!!');
+      onTimer.disabled = false;
       clearInterval(timerId);
       return;
     }
