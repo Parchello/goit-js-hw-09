@@ -8,7 +8,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    selectedDates[0];
   },
 };
 
@@ -26,7 +26,7 @@ const flatpickrInstance = flatpickr('#datetime-picker', options);
 function timerStart() {
   onTimer.disabled = true;
   const timerId = setInterval(() => {
-    currentDate = new Date();
+    const currentDate = new Date();
     const selectedDate = flatpickrInstance.selectedDates[0];
     const diferense = selectedDate - currentDate;
     if (selectedDate < currentDate) {
