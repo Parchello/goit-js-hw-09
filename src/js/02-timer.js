@@ -50,6 +50,10 @@ function timerStart() {
     const diferense = selectedDate - currentDate;
     onTimer.disabled = true;
     onInput.disabled = true;
+    if (diferense < 0) {
+      clearInterval(timerId);
+      return;
+    }
 
     convertMs(diferense);
   }, 1000);
