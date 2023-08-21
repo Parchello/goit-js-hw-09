@@ -36,9 +36,6 @@ function chooseDateOn() {
   } else {
     {
       Notiflix.Notify.failure('Please choose a date in the future');
-
-      clearInterval(timerId);
-      return;
     }
   }
 }
