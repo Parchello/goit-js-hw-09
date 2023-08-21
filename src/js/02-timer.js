@@ -41,14 +41,16 @@ function chooseDateOn() {
 }
 
 function timerStart() {
+  onTimer.disabled = true;
+  onInput.disabled = true;
   const timerId = setInterval(() => {
     const currentDate = new Date();
     const selectedDate = flatpickrInstance.selectedDates[0];
     const diferense = selectedDate - currentDate;
-    onTimer.disabled = true;
-    onInput.disabled = true;
+
     if (diferense < 0) {
       clearInterval(timerId);
+      onInput.disabled = false;
       return;
     }
 
