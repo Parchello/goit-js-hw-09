@@ -13,6 +13,7 @@ const options = {
 };
 
 const onTimer = document.querySelector('[data-start]');
+
 onTimer.addEventListener('click', timerStart);
 const numbers = {
   days: document.querySelector('[data-days]'),
@@ -22,19 +23,35 @@ const numbers = {
 };
 
 const flatpickrInstance = flatpickr('#datetime-picker', options);
+const onInput = document.querySelector('#datetime-picker');
+onInput.addEventListener('input', chooseDateOn);
+onTimer.disabled = true;
+
+function chooseDateOn() {
+  const currentDate = new Date();
+  const selectedDate = flatpickrInstance.selectedDates[0];
+  console.log(selectedDate);
+  if (selectedDate > currentDate) {
+    onTimer.disabled = false;
+    console.log(selectedDate);
+  } else {
+    {
+      Notiflix.Notify.failure('Please choose a date in the future');
+
+      clearInterval(timerId);
+      return;
+    }
+  }
+}
 
 function timerStart() {
-  onTimer.disabled = true;
   const timerId = setInterval(() => {
     const currentDate = new Date();
     const selectedDate = flatpickrInstance.selectedDates[0];
     const diferense = selectedDate - currentDate;
-    if (selectedDate < currentDate) {
-      Notiflix.Notify.failure('You  must choose future date!!!');
-      onTimer.disabled = false;
-      clearInterval(timerId);
-      return;
-    }
+    onTimer.disabled = true;
+    onInput.disabled = true;
+
     convertMs(diferense);
   }, 1000);
 

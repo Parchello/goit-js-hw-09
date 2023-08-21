@@ -13,9 +13,10 @@ function listPromises(evt) {
   const amount = parseInt(document.querySelector('input[name="amount"]').value);
 
   const arr = [];
-  for (let i = 0; i < amount; i++) {
-    const delay = firstDelay + i * step;
+  let delay = firstDelay;
+  for (let i = 1; i <= amount; i++) {
     arr.push(createPromise(i, delay));
+    delay += step;
   }
   function createPromise(position, delay) {
     return new Promise((resolve, reject) => {
