@@ -30,10 +30,9 @@ onTimer.disabled = true;
 function chooseDateOn() {
   const currentDate = new Date();
   const selectedDate = flatpickrInstance.selectedDates[0];
-  console.log(selectedDate);
+
   if (selectedDate > currentDate) {
     onTimer.disabled = false;
-    console.log(selectedDate);
   } else {
     {
       Notiflix.Notify.failure('Please choose a date in the future');
